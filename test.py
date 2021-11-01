@@ -3,11 +3,16 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
 def test_wikipedia_croatian_edit_history():
-    driver = webdriver.Chrome()
+    headless = False
+    
+    options = webdriver.ChromeOptions()
+    if headless:
+        options.add_argument('--headless')
+    
+    driver = webdriver.Chrome(options=options,service_args=['--verbose', '--log-path=./chromedriver.log'])
     driver.get("http://www.wikipedia.org")
     driver.maximize_window()
 
@@ -26,9 +31,7 @@ def test_wikipedia_croatian_edit_history():
     actions.perform()
 
     driver.find_element(By.CSS_SELECTOR, '#ooui-php-7 > button')
-    #print(driver.find_element(By.CSS_SELECTOR, '#pagehistory > li.selected.before').text)
     assert '21:33, 24. travnja 2020.' in driver.find_element(By.CSS_SELECTOR, '#pagehistory > li.selected.before').text
-    # == 'sadpret 21:33, 24. travnja 2020. Croxyz razgovor doprinosi 5.881 bajt +11 ukloni ovu izmjenu'
 
     driver.close()
 
