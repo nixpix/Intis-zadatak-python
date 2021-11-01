@@ -1,4 +1,4 @@
-# # Zadatak 1
+# Zadatak 1
 
 For the test to run, `python3` needs to be installed:
 Other dependencies that need to be installed are: `pytest`, `pytest-html` and `selenium`.
