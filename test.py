@@ -9,6 +9,7 @@ def test_wikipedia_croatian_edit_history():
     headless = True
     
     options = webdriver.ChromeOptions()
+    options.add_argument('lang=en')
     if headless:
         options.add_argument('--headless')
     
