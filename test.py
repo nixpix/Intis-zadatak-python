@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
 def test_wikipedia_croatian_edit_history():
-    headless = False
+    headless = True
     
     options = webdriver.ChromeOptions()
     if headless:
@@ -34,4 +34,3 @@ def test_wikipedia_croatian_edit_history():
     assert '21:33, 24. travnja 2020.' in driver.find_element(By.CSS_SELECTOR, '#pagehistory > li.selected.before').text
 
     driver.close()
-
